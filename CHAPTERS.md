@@ -23,6 +23,7 @@ Book: (http://git-scm.com/book)
 	2.8 Summary
 
 3. Git Branching
+
 	3.1 What a Branch Is
 	3.2 Basic Branching and Merging
 	3.3 Branch Management
@@ -32,6 +33,7 @@ Book: (http://git-scm.com/book)
 	3.7 Summary
 
 4. Git on the Server
+
 	4.1 The Protocols
 	4.2 Getting Git on a Server
 	4.3 Generating Your SSH Public Key
@@ -45,12 +47,14 @@ Book: (http://git-scm.com/book)
 	4.11 Summary
 
 5. Distributed Git
+
 	5.1 Distributed Workflows
 	5.2 Contributing to a Project
 	5.3 Maintaining a Project
 	5.4 Summary
 
 6. Git Tools
+
 	6.1 Revision Selection
 	6.2 Interactive Staging
 	6.3 Stashing
@@ -61,6 +65,7 @@ Book: (http://git-scm.com/book)
 	6.8 Summary
 
 7. Customizing Git
+
 	7.1 Git Configuration
 	7.2 Git Attributes
 	7.3 Git Hooks
@@ -68,11 +73,13 @@ Book: (http://git-scm.com/book)
 	7.5 Summary
 
 8. Git and Other Systems
+	
 	8.1 Git and Subversion
 	8.2 Migrating to Git
 	8.3 Summary
 
 9. Git Internals
+	
 	9.1 Plumbing and Porcelain
 	9.2 Git Objects
 	9.3 Git References
