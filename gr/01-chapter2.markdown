@@ -91,9 +91,9 @@ Figure 2-1. Ο κύκλος ζωής της κατάστασης των αρχέ
 
 Μπορείτε να καταλάβετε ότι είναι σταδιοποιημένο γιατί βρίσκεται κάτω από το “Changes to be committed”. Εάν κάνετε ένα "commit" αυτή τη στιγμη, η έκδοση του αρχείου την στιγμή που τρέξατε το `git add` θα βρίσκεται στο στιγμιότυπο στο ιστορικό. Ίσως θυμηθείτε όταν τρέξατε προηγουμένως το `git init`, μετά τρέξατε το `git add (files)`. Αυτό έγινε για να αρχίσετε να παρακολουθείτε αρχεία στον φάκελο σας. Η εντολή `git add` λαμβάνει ένα όνομα για το path είτε του αρχείου είτε για τον φάκελο, η εντολή προσθέτει όλα τα αρχεία σε αυτόν τον φάκελο αναδρομικά.
 
-### Staging Modified Files ###
+### Σταδιοποίηση Τροποποιημένων Αρχείων ###
 
-Let’s change a file that was already tracked. If you change a previously tracked file called `benchmarks.rb` and then run your `status` command again, you get something that looks like this:
+Ας αλλάξουμε ένα αρχείο το οποίο παρακολουθούσαμε ήδη. Εάν αλλάξετε ένα παρακολουθούμενο αρχείο με το όνομα `benchmarks.rb΄ και στη συνέχεια τρέξτε την `status` εντολή ξανά, θα λάβετε κάτι παρόμοιο με τα παρακάτω: 
 
 	$ git status
 	# On branch master
@@ -108,7 +108,7 @@ Let’s change a file that was already tracked. If you change a previously track
 	#	modified:   benchmarks.rb
 	#
 
-The `benchmarks.rb` file appears under a section named “Changed but not updated” — which means that a file that is tracked has been modified in the working directory but not yet staged. To stage it, you run the `git add` command (it’s a multipurpose command — you use it to begin tracking new files, to stage files, and to do other things like marking merge-conflicted files as resolved). Let’s run `git add` now to stage the `benchmarks.rb` file, and then run `git status` again:
+Το αρχείο `benchmarks.rb` βρίσκεται κάτω από ένα τμήμα που ονομάζεται “Changed but not updated” - το οποίο σημαίνει ότι ένα αρχείο που παρακολουθείται έχει τροποποιηθεί στον φάκελο που δουλεύουμε αλλά δεν έχει σταδιοποιηθεί ακόμα. Για να γίνει αυτό, χρησιμοποιούμε την εντολή `git add` ( αυτή η εντολή εξυπηρετεί πολλαπλούς σκοπούς - τη χρησιμοποιείτε για την παρακολούθηση νέων αρχείων, για τη σταδιοποίηση αρχείων και για να κάνουν και άλλες δουλειές όπως το να μαρκάρει συγχωνευμένα-συγκρουόμενα αρχεία ). Ας τρέξουμε την εντολή `git add`για να σταδιοποιήσουμε το `benchmarks.rb` αρχείο, και στη συνέχεια τρέξτε την `git status` ξανά.
 
 	$ git add benchmarks.rb
 	$ git status
@@ -120,7 +120,7 @@ The `benchmarks.rb` file appears under a section named “Changed but not update
 	#	modified:   benchmarks.rb
 	#
 
-Both files are staged and will go into your next commit. At this point, suppose you remember one little change that you want to make in `benchmarks.rb` before you commit it. You open it again and make that change, and you’re ready to commit. However, let’s run `git status` one more time:
+Και τα δύο αρχεία σταδιοποιήθηκαν και θα μπουν στο επόμενο σας commit. Σε αυτό το σημείο, υποθέτουμε ότι θυμηθήκατε μια μικρή αλλαγή που θα θέλατε να κάνετε στο `benchmarks.rb` πριν κάνετε το commit. Το ανοίγετε ξανά και κάνετε αυτήν την αλλαγή, και είστε έτοιμοι να προχωρήσετε στο commit. Παρόλα αυτά ας τρέξουμε την `git status` για άλλη μια φορά:
 
 	$ vim benchmarks.rb
 	$ git status
@@ -137,7 +137,7 @@ Both files are staged and will go into your next commit. At this point, suppose 
 	#	modified:   benchmarks.rb
 	#
 
-What the heck? Now `benchmarks.rb` is listed as both staged and unstaged. How is that possible? It turns out that Git stages a file exactly as it is when you run the `git add` command. If you commit now, the version of `benchmarks.rb` as it was when you last ran the `git add` command is how it will go into the commit, not the version of the file as it looks in your working directory when you run `git commit`. If you modify a file after you run `git add`, you have to run `git add` again to stage the latest version of the file:
+Τι στο καλό? τώρα το `benchmarks.rb` εμφανίζεται ταυτόχρονα σαν σταδιοποιημένο και σαν μη σταδιοποιημένο. Πως γενιν αυτο? Φαίνεται πως το Git Σταδιοποιεί ένα αρχείο ακριβώς όπως ήταν όταν τρέχατε την εντολή `git add`. Εάν κάνετε commit τώρα, η έκδοση του `benchmarks.rb` όπως ήταν την τελευταία φορά που τρέξαμε την `git add` εντολή είναι το πως ακριβώς θα μπει στο commit, όχι για την έκδοση του αρχείου όπως φαίνεται στον φάκελο εργασίας όταν τρέχουμε το `git commit`. Εάν τροποποιήσουμε ένα αρχείο μόλις τρέξουμε την εντολή `git add` πάλι για να σταδιοποιήσουμε την τελευταία έκδοση του αρχείου: 
 
 	$ git add benchmarks.rb
 	$ git status
@@ -149,26 +149,27 @@ What the heck? Now `benchmarks.rb` is listed as both staged and unstaged. How is
 	#	modified:   benchmarks.rb
 	#
 
-### Ignoring Files ###
+### Αγνοώντας Αρχεία ###
 
-Often, you’ll have a class of files that you don’t want Git to automatically add or even show you as being untracked. These are generally automatically generated files such as log files or files produced by your build system. In such cases, you can create a file listing patterns to match them named `.gitignore`.  Here is an example `.gitignore` file:
+Συχνά, θα έχετε μια κλάση αρχείων τα οποία δε θέλετε το Git να προσθέτει αυτόματα ή ακόμα και το να σας δείχνει αν δεν παρακολουθούνται. Αυτές γενικά παράγωνται αυτόματα όπως τα αρχεία καταγραφής αλλαγών και τα αρχεία που παράγωνται μέσα στο build του συστήματος. Σε τέτοιες περιπτώσεις, μπορείτε να δημιουργήσετε ένα αρχείο με λίστες προτύπων και για να ταιριάζουν τα ονομάζουμε `.gitignore`. Παρακάτω υπάρχει παράδειγμα `.gitignore` αρχείου:
 
 	$ cat .gitignore
 	*.[oa]
 	*~
 
-The first line tells Git to ignore any files ending in `.o` or `.a` — *object* and *archive* files that may be the product of building your code. The second line tells Git to ignore all files that end with a tilde (`~`), which is used by many text editors such as Emacs to mark temporary files. You may also include a `log`, `tmp`, or `pid` directory; automatically generated documentation; and so on. Setting up a `.gitignore` file before you get going is generally a good idea so you don’t accidentally commit files that you really don’t want in your Git repository.
+Η πρώτη γραμμή λέει στο Git να αγνοήσει όλα τα αρχεία που τελειώνουν με `.o` ή `.a` — *αντικείμενο* και *φάκελος* αρχεία που μπορεί να έχουν παραχθεί από το χτίσιμο του κώδικα σας. Η δεύτερη γραμμή λέει στο Git να αγνοήσει όλα τα αρχεία που τελειώνουν με περισπωμένη (`~`), το οποίο χρησιμοποιείται από πολλούς επεξεργαστές κείμενου όπως τα Emacs για το μαρκάρισμα προσωρινών αρχείων. Μπορείτε να συμπεριλάβετε τα `log`, `tmp`, ή `pid` φάκελο, αυτόματη αρχειοθέτηση κλπ. Φτιάχνωντας ένα `.gitignore` αρχείο πριν ξεκινήσετε είναι μια καλή ιδέα για να μην κάνετε commit αρχεία που δεν θέλετε μέσα στο  Git repository σας.
 
-The rules for the patterns you can put in the `.gitignore` file are as follows:
+Οι κανόνες για τα πρότυπα που θα μπουν στο `.gitignore` αρχείο είναι οι εξής:
 
-*	Blank lines or lines starting with `#` are ignored.
-*	Standard glob patterns work.
-*	You can end patterns with a forward slash (`/`) to specify a directory.
-*	You can negate a pattern by starting it with an exclamation point (`!`).
+*	Κενές γραμμές η γραμμές που ξεκινάνε με `#` αγνοούνται.
+*	Τα στάνταρ glop πρότυπα δουλεύουν.
+*	Μπορείτε επίσης να κλείσετε πρότυπα με (`/`) για να συγκεκριμενοποιήσετε έναν φάκελο.
+*	Μπορείτε να αναιρέσετε ένα πρότυπο με το να το ξεκινάτε με θαυμαστικό (`!`).
 
-Glob patterns are like simplified regular expressions that shells use. An asterisk (`*`) matches zero or more characters; `[abc]` matches any character inside the brackets (in this case `a`, `b`, or `c`); a question mark (`?`) matches a single character; and brackets enclosing characters separated by a hyphen(`[0-9]`) matches any character in the range (in this case 0 through 9) .
+Glob πρότυπα είναι σαν απλοποιημένες κανονικές εκφράσεις που χρησιμοποιούν στα shells. Ένας αστερίσκος (`*`) αντιστοιχίζει μηδέν ή και περισσότερους χαρακτήρες, το `[abc]` αντιστοιχεί σε όλους τους χαρακτήρες μέσα στις αγκύλες (στη περίπτωση αυτή `a`, `b`, ή `c`), ένα ερωτηματικό (`?`) αντιστοιχίζεται με έναν χαρακτήρα, και οι χαρακτήρες όταν κλείνουν αγκύλες χωρίζονται από ένα ενωτικο(`[0-9]`) αντιστοιχεί με όλους τους χαρακτήρες του πεδίου( στη περίπτωση αυτή από 0 εως 9) .
+ 
 
-Here is another example `.gitignore` file:
+Άλλο ένα παράδειγμα `.gitignore` αρχείου:
 
 	# a comment - this is ignored
 	*.a       # no .a files
@@ -177,11 +178,11 @@ Here is another example `.gitignore` file:
 	build/    # ignore all files in the build/ directory
 	doc/*.txt # ignore doc/notes.txt, but not doc/server/arch.txt
 
-### Viewing Your Staged and Unstaged Changes ###
+### Παρακολουθώντας τις Σταδιοποιημένες και τις Μη Σταδιοποιημένες Αλλαγές  ###
 
-If the `git status` command is too vague for you — you want to know exactly what you changed, not just which files were changed — you can use the `git diff` command. We’ll cover `git diff` in more detail later; but you’ll probably use it most often to answer these two questions: What have you changed but not yet staged? And what have you staged that you are about to commit? Although `git status` answers those questions very generally, `git diff` shows you the exact lines added and removed — the patch, as it were.
+Εάν η `git status` εντολή είναι πολύ ασαφής για εσάς - θα θέλατε να ξέρετε ακριβώς τι αλλάξατε, όχι μόνο ποια αρχεία τροποποιήθηκαν - μπορείτε απλά να χρησιμοποιήσετε την εντολή `git diff`. Θα καλύψουμε την εντολή αυτή με περισσότερες ΄λεπτομέρειες αργότερα, αλλά πιθανότατα να τη χρησιμοποιείτε συχνά για να απαντήσετε σε αυτές τις δύο ερωτήσεις : Τι έχετε αλλάξει αλλα δεν έχετε σταδιοποιήσει ακόμα? Και τι έχετε σταδιοποιήσει και θέλετε να κάνετε commit? Παρόλαυτα η `git status` απαντάει αυτά τα ερωτήματα πολύ γενικά, η `git diff` σας δείχνει ακριβώς τις γραμμές που προστέθηκαν ή αφαιρέθηκαν - το patch, όπως ήταν.
 
-Let’s say you edit and stage the `README` file again and then edit the `benchmarks.rb` file without staging it. If you run your `status` command, you once again see something like this:
+Ας πούμε ότι τροποποιείτε και σταδιοποιείτε το αρχείο `README` ξανά και στη συνέχεια κάνετε το ίδιο στο αρχείο `benchmarks.rb` χωρίς τη σταδιοποίηση όμως. Τότε αν τρέξετε την εντολή `status`, θα δείτε ξανά κάτι παρόμοιο με τα παρακάτω: 
 
 	$ git status
 	# On branch master
@@ -196,7 +197,7 @@ Let’s say you edit and stage the `README` file again and then edit the `benchm
 	#	modified:   benchmarks.rb
 	#
 
-To see what you’ve changed but not yet staged, type `git diff` with no other arguments:
+Για να δείτε τι αλλάξατε αλλά όχι ακόμα σταδιοποιήσει εισάγετε την εντολή `git diff` χωρίς άλλες προσθήκες:
 
 	$ git diff
 	diff --git a/benchmarks.rb b/benchmarks.rb
@@ -215,9 +216,9 @@ To see what you’ve changed but not yet staged, type `git diff` with no other a
 	           log = git.commits('master', 15)
 	           log.size
 
-That command compares what is in your working directory with what is in your staging area. The result tells you the changes you’ve made that you haven’t yet staged.
+Αυτή η εντολή συγκρίνει το τι βρίσκεται μέσα στον φάκελο που δουλεύετε με το τι υπάρχει στην σταδιοποιημένη σας περιοχή. Το αποτέλεσμα θα σας πει τις αλλαγές που έχετε κάνει και δεν έχετε σταδιοποιήσει ακόμα.
 
-If you want to see what you’ve staged that will go into your next commit, you can use `git diff --cached`. (In Git versions 1.6.1 and later, you can also use `git diff --staged`, which may be easier to remember.) This command compares your staged changes to your last commit:
+Εάν θέλετε να δείτε τι έχετε σταδιοποιήσει αυτό θα μπει στο επόμενο commit σας, μπορείτε να χρησιμοποιείσετε την εντολή  `git diff --cached`. ( Στις εκδόσεις Git 1.6.1 και επόμενες, μπορείτε επίσης να χρησιμοποιήσετε τη `git diff --staged`, που ίσως είναι πιο εύκολη να θυμάστε.) Αυτή η εντολή συγκρίνει τις σταδιποιημένες σας αλλαγές από το τελευταίο σας commit:
 
 	$ git diff --cached
 	diff --git a/README b/README
@@ -232,9 +233,9 @@ If you want to see what you’ve staged that will go into your next commit, you 
 	+
 	+Grit is a Ruby library for extracting information from a Git repository
 
-It’s important to note that `git diff` by itself doesn’t show all changes made since your last commit — only changes that are still unstaged. This can be confusing, because if you’ve staged all of your changes, `git diff` will give you no output.
+Είναι σημαντικό να σημειωθεί ότι η  `git diff` δεν δείχνει από μόνη της όλες τις αλλαγές που κάνατε στο τελευταίο σας commit αλλά μόνο αυτές που δεν έχουν σταδιοποιηθεί ακόμα. Αυτό μπορεί να σας μπερδέψει λίγο  επειδή εάν έχετε σταδιοποιήσει όλες τις αλλαγές σας, η `git diff` δε θα επιστρέψει τίποτα.
 
-For another example, if you stage the `benchmarks.rb` file and then edit it, you can use `git diff` to see the changes in the file that are staged and the changes that are unstaged:
+Ένα άλλο παράδειγμα, εάν σταδιοποιήσετε το αρχείο `benchmarks.rb`και μετά το τροποποιήσετε , μπορείτε με την `git diff` να δείτε τις αλλαγές που σταδιοποιήθηκαν και τις αλλαγές που δνε σταδιοποιήθηκαν:
 
 	$ git add benchmarks.rb
 	$ echo '# test line' >> benchmarks.rb
@@ -250,7 +251,7 @@ For another example, if you stage the `benchmarks.rb` file and then edit it, you
 	#	modified:   benchmarks.rb
 	#
 
-Now you can use `git diff` to see what is still unstaged
+Tώρα μπορείτε να χρησιμοποιήσετε την `git diff` για να δείτε τι δεν είναι ακόμα σταδιοποιημένο
 
 	$ git diff
 	diff --git a/benchmarks.rb b/benchmarks.rb
@@ -263,7 +264,7 @@ Now you can use `git diff` to see what is still unstaged
 	 ##pp Grit::GitRuby.cache_client.stats
 	+# test line
 
-and `git diff --cached` to see what you’ve staged so far:
+και την `git diff --cached` για να δείτε τι έχετε σταδιοποιήσει μέχρι στιγμής:
 
 	$ git diff --cached
 	diff --git a/benchmarks.rb b/benchmarks.rb
