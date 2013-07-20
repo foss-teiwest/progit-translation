@@ -337,11 +337,11 @@ Tώρα μπορείτε να χρησιμοποιήσετε την `git diff` �
 
 Παρατηρείτε το ότι δεν χρειάζεται να εισάγετε το 'git add' στο 'benchmarks.rb' αρχείο πριν το commit.
 
-### Removing Files ###
+### Αφαιρώντας Αρχεία ###
 
-To remove a file from Git, you have to remove it from your tracked files (more accurately, remove it from your staging area) and then commit. The `git rm` command does that and also removes the file from your working directory so you don’t see it as an untracked file next time around.
+Για να αφαιρέσετε ένα αρχείο από το Git πρέπει να το αφαιρέσετε από τα αρχεία που παρακολουθούνται (πιο σωστά, αφαιρέστε τα από την περιοχή σταδιοποίησης σας) και έπειτα κάντε commit. Η 'git rm' το κάνει αυτό και επίσης αφαιρεί το αρχείο από τον φάκελο σας έτσι ώστε να μην το ξαναδείτε σε επόμενη φορά.
 
-If you simply remove the file from your working directory, it shows up under the “Changed but not updated” (that is, _unstaged_) area of your `git status` output:
+Εάν απλά αφαιρέσετε το αρχείο από τον φάκελό σας, θα εμφανηστεί κάτω από το “Changed but not updated” (το οποίο είναι μη σταδιοποιημένο) της εξόδου του 'git status':
 
 	$ rm grit.gemspec
 	$ git status
@@ -353,7 +353,7 @@ If you simply remove the file from your working directory, it shows up under the
 	#       deleted:    grit.gemspec
 	#
 
-Then, if you run `git rm`, it stages the file’s removal:
+Έπειτα, αν τρέξετε την 'git rm', θα σταδιοποιήσει την αφαίρεση του αρχείου:
 
 	$ git rm grit.gemspec
 	rm 'grit.gemspec'
@@ -366,21 +366,21 @@ Then, if you run `git rm`, it stages the file’s removal:
 	#       deleted:    grit.gemspec
 	#
 
-The next time you commit, the file will be gone and no longer tracked. If you modified the file and added it to the index already, you must force the removal with the `-f` option. This is a safety feature to prevent accidental removal of data that hasn’t yet been recorded in a snapshot and that can’t be recovered from Git.
+Στο επόμενο commit, το αρχείο δε θα υπάρχει πια. Εάν το τροποποιήσατε και το προσθέσατε ήδη στο index πρέπει να αναγκάσετε την αφαίρεση με το '-f'. Αυτό είναι ένα χαρακτηρηστικό ασφαλείας για να αποφευχθεί κατα λάθος διαγραφή δεδομένων τα οποία δεν έχουν καταγραφεί ακόμα σε στιγμιότυπο το οποίο δεν μπορεί να ανακτηθεί από το Git.
 
-Another useful thing you may want to do is to keep the file in your working tree but remove it from your staging area. In other words, you may want to keep the file on your hard drive but not have Git track it anymore. This is particularly useful if you forgot to add something to your `.gitignore` file and accidentally added it, like a large log file or a bunch of `.a` compiled files. To do this, use the `--cached` option:
+Ένα ακόμα χρήσιμο πράγμα που θέλετε να κάνετε είναι το να κρατήσετε τα αρχεία που δουλεύετε αλλά θέλετε να τα αφαιρέσετε από την περιοχή σταδιοποίησης. Με άλλα λόγια, ίσως θέλετε να κρατήσετε το αρχείο στον σκληρό δίσκο σας αλλά να μην έχετε το Git να το παρακολουθεί πια. Αυτό είναι γενικά χρήσιμο εάν ξεχάσατε να προσθέσετε κάτι στο '.gitignore' αρχείο και καταλάθος το προσθέσατε, όπως ένα μεγάλο αρχείο καταγραφής ή ένα σύνολο '.a' compiled αρχείων.Για να το κάνετε αυτό, χρησιμοποιήστε την '--cached' επιλογή:
 
 	$ git rm --cached readme.txt
 
-You can pass files, directories, and file-glob patterns to the `git rm` command. That means you can do things such as
+Μπορείτε να περάσετε αρχεία, φακέλους, και file-glob paterns στην εντολή 'git rm'. Αυτό σημαίνει ότι μπορείτε να κάνετε πράγματα όπως:
 
 	$ git rm log/\*.log
 
-Note the backslash (`\`) in front of the `*`. This is necessary because Git does its own filename expansion in addition to your shell’s filename expansion. This command removes all files that have the `.log` extension in the `log/` directory. Or, you can do something like this:
+Παρατηρείστε την κάθετη (`\`) μπροστά από το `*`. Αυτό είναι απαραίτητο επειδή το Git κάνει την δική του επέκταση ονόματος μαζί με την επέκταση ονόματος του shell σας. Αυτή η εντολή αφαιρεί όλα τα αρχεία που τελειώνουν με `.log` στον φάκελο `log/`. Ή μπορείτε να κάνετε κάτι τέτοιο:
 
 	$ git rm \*~
 
-This command removes all files that end with `~`.
+Με αυτή την εντολή αφαιρεί όλα τα αρχεία που τελειώνουν με `~`.
 
 ### Moving Files ###
 
