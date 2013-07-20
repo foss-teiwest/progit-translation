@@ -283,16 +283,16 @@ Tώρα μπορείτε να χρησιμοποιήσετε την `git diff` �
 	          log = git.commits('master', 15)
 	          log.size
 
-### Committing Your Changes ###
+### Κάνοντας Commit τις αλλαγές σας ###
 
-Now that your staging area is set up the way you want it, you can commit your changes. Remember that anything that is still unstaged — any files you have created or modified that you haven’t run `git add` on since you edited them — won’t go into this commit. They will stay as modified files on your disk.
-In this case, the last time you ran `git status`, you saw that everything was staged, so you’re ready to commit your changes. The simplest way to commit is to type `git commit`:
+Τώρα που έχουμε ετοιμάσει τη σταδιοποίησή μας όπως τη θέλουμε μπορούμε να κάνουμε commit στις αλλαγές μας. Να θυμάστε ότι οτιδήποτε δεν έχουμε σταδιποιήσει ακόμα — για όποια αρχεία που δεν δεν έχετε τρέξει την 'git add' από την στιγμή που τα επεξεργαστήκατε — δε θα μπουν σε αυτό το commit. Θα μείνουν σαν τροποποιημένα αρχεία στον δίσκο σας.
+Σε αυτή την περίπτωση, την τελευταία φορά που χρησιμοποιήσατε την 'git status' , είδατε ότι όλα ήταν σταδιοποιημένα, οπότε είστε έτοιμοι να κάνετε commit τις αλλαγές σας. Ο πιο απλός τρόπος να κάνετε commit είναι η παρακάτω εντολή :
 
 	$ git commit
 
-Doing so launches your editor of choice. (This is set by your shell’s `$EDITOR` environment variable — usually vim or emacs, although you can configure it with whatever you want using the `git config --global core.editor` command as you saw in *Chapter 1*).
+Έτσι ανοίγει το πρόγραμμα επεξεργασίας που έχετε επιλέξει. (Αυτό γίνεται μέσα απο το Shell `$EDITOR` - συνήθως vim ή emacs, αν και παρόλαυτα μπορείτε να τα ρυθμίσετε με οτι θέλετε με την εντολή `git config --global core.editor` που είδαμε στο *Κεφάλαιο 1*).
 
-The editor displays the following text (this example is a Vim screen):
+Το πρόγραμμα επεξεργασίας προβάλει το παρακάτω κείμενο (στο παράδειγμα χρησιμοποιείται vim):
 
 	# Please enter the commit message for your changes. Lines starting
 	# with '#' will be ignored, and an empty message aborts the commit.
@@ -307,22 +307,22 @@ The editor displays the following text (this example is a Vim screen):
 	~
 	".git/COMMIT_EDITMSG" 10L, 283C
 
-You can see that the default commit message contains the latest output of the `git status` command commented out and one empty line on top. You can remove these comments and type your commit message, or you can leave them there to help you remember what you’re committing. (For an even more explicit reminder of what you’ve modified, you can pass the `-v` option to `git commit`. Doing so also puts the diff of your change in the editor so you can see exactly what you did.) When you exit the editor, Git creates your commit with that commit message (with the comments and diff stripped out).
+Μπορείτε να δείτε ότι το προκαθορισμένο μήνυμα commit περιέχει την παλαιότερη έξοδο του 'git status' καθώς και μια άδεια γραμμή στο πάνω μέρος. Μπορείτε να διαγράψετε αυτά τα σχόλεια και να πληκτρολογήσετε το δικό σας commit μήνυμα, ή μπορείτε να τα αφήσετε ως έχουν για να σας βοηθήσουν να θυμάστε τι κάνετε commit. (Για μια πιο συγκεκριμένη υπενθύμιση για τις αλλαγές σας μπορείτε να εισάγετε την '-v' επιλογή στο 'git commit'. Με αυτόν τον τρόπο προβάλονται όλες οι αλλαγές σας απο τον editor για να μπορείτε να δείτε ακριβώς τις αλλαγές που κάνατε.) Όταν κλείσετε τον editor, το Git θα δημιουργήσει ένα νέο commit με το νέο σχόλιο.
 
-Alternatively, you can type your commit message inline with the `commit` command by specifying it after a `-m` flag, like this:
+Εναλλακτικά, μπορείτε να γράψετε το μήνυμα του commit σας μαζί μέσα στην εντολή 'commit' βάζοντας το '-m' , κάπως έτσι:
 
 	$ git commit -m "Story 182: Fix benchmarks for speed"
 	[master]: created 463dc4f: "Fix benchmarks for speed"
 	 2 files changed, 3 insertions(+), 0 deletions(-)
 	 create mode 100644 README
 
-Now you’ve created your first commit! You can see that the commit has given you some output about itself: which branch you committed to (`master`), what SHA-1 checksum the commit has (`463dc4f`), how many files were changed, and statistics about lines added and removed in the commit.
+Μόλις φτιάξατε το πρώτο σας commit! Μπορείτε να δείτε το commit σας έχει εξάγει κάποιες πληροφορίες για τον εαυτό του: ποιο branch έγινε commit στον ('master'), τι SHA-1 άθροισμα ελέγχου έχει το commit (`463dc4f`), πόσα αρχεία άλλαξαν, και στατιστικά για τις γραμμές που προστέθηκαν ή αφαιρέθηκαν από το commit.
 
-Remember that the commit records the snapshot you set up in your staging area. Anything you didn’t stage is still sitting there modified; you can do another commit to add it to your history. Every time you perform a commit, you’re recording a snapshot of your project that you can revert to or compare to later.
+Να θυμάστε ότι τα commit καταγράφουν ότι έχετε φτιάξει κατά την σταδιποίηση. Οτιδήποτε δεν σταδιοποιήθηκε είναι ακόμα εκεί τροποποιημένο. Μπορείτε να κάνετε άλλο ένα commit για να το προσθέσετε στο ιστορικό σας. Κάθε φορά που κάνετε ένα commit, καταγράφετε ένα στιγμιότυπο του project σας το οποίο μπορείτε να αναστρέψετε ή να συγκρίνετε αργότερα.
 
-### Skipping the Staging Area ###
+### Αποφεύγοντας την Σταδιποίηση ###
 
-Although it can be amazingly useful for crafting commits exactly how you want them, the staging area is sometimes a bit more complex than you need in your workflow. If you want to skip the staging area, Git provides a simple shortcut. Providing the `-a` option to the `git commit` command makes Git automatically stage every file that is already tracked before doing the commit, letting you skip the `git add` part:
+Αν και μπορεί να είναι πολύ χρήσιμη για την κατασκευή των commits όπως ακριβώς τα θέλουμε, η σταδιοποίηση είναι μερικές φορές λίγο πιο πολύπλοκη απ'όσο θέλουμε, βάση τη ροή που εργαζόμαστε. Εάν θέλετε να προσπελάσετε τη σταδιοποίηση, το Git προσφέρει μια απλή συντόμευση. Προσθέτοντας το '-a' στην εντολή 'git commit' κάνει το Git αυτόματα να σταδιοποιήσει όλα τα αρχεία που παρακολουθεί πριν να κάνει το commit, αφήνοντας σας να προσπελάσετε το 'git add':
 
 	$ git status
 	# On branch master
@@ -335,7 +335,7 @@ Although it can be amazingly useful for crafting commits exactly how you want th
 	[master 83e38c7] added new benchmarks
 	 1 files changed, 5 insertions(+), 0 deletions(-)
 
-Notice how you don’t have to run `git add` on the `benchmarks.rb` file in this case before you commit.
+Παρατηρείτε το ότι δεν χρειάζεται να εισάγετε το 'git add' στο 'benchmarks.rb' αρχείο πριν το commit.
 
 ### Removing Files ###
 
